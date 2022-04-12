@@ -14,7 +14,7 @@ class TestLogin():
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument('--headless')
 
-            driver = webdriver.Chrome(executable_path=binary_path, chrome_options=chrome_options)
+            driver = webdriver.Chrome(executable_path="C://Users//adil//Downloads//chromedriver_win32_windows//chromedriver.exe", chrome_options=chrome_options)
             driver.implicitly_wait(10)
             driver.maximize_window()
             driver.close()
