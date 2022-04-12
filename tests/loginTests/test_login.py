@@ -4,8 +4,8 @@ from pathlib import *
 from chromedriver_py import binary_path
 
 
-class TestLogin():
-    @pytest.fixture(object)
+class TestLogin(object):
+    @pytest.fixture()
     def test_setup(self):
         try:
             global driver
