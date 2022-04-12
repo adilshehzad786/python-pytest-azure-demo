@@ -4,19 +4,21 @@ from pathlib import *
 from chromedriver_py import binary_path
 
 
-class TestLogin(object):
+class TestLogin():
+    def __init__(self, driver):
+        self.driver=driver
+      
     @pytest.fixture()
     def test_setup(self):
         try:
-            global driver
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument('--headless')
 
-            self.driver = webdriver.Chrome(executable_path=binary_path, chrome_options=chrome_options)
-            self.driver.implicitly_wait(10)
-            self.driver.maximize_window()
-            self.driver.close()
-            self.driver.quit()
+            driver = webdriver.Chrome(executable_path=binary_path, chrome_options=chrome_options)
+            driver.implicitly_wait(10)
+            driver.maximize_window()
+            driver.close()
+            driver.quit()
             print("Test Completed")
         except:
             print("Something is failing")
