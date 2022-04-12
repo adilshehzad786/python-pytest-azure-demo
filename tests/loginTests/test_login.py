@@ -6,7 +6,7 @@ from chromedriver_py import binary_path
 
 class TestLogin():
       
-    @pytest.fixture('driver')
+    @pytest.fixture
     def test_setup(self):
         try:
             chrome_options = webdriver.ChromeOptions()
