@@ -26,12 +26,12 @@ class TestLogin:
         Verify click and title of page
         :return: None
         """
-        driver.get('https://lambdatest.github.io/sample-todo-app/')
-        driver.find_element_by_name("li1").click()
-        driver.find_element_by_name("li2").click()
+        self.driver.get('https://lambdatest.github.io/sample-todo-app/')
+        self.driver.find_element_by_name("li1").click()
+        self.driver.find_element_by_name("li2").click()
 
         title = "Sample page - lambdatest.com"
-        assert title == driver.title
+        assert title == self.driver.title
 
     
 
@@ -40,14 +40,14 @@ class TestLogin:
         Verify item submission
         :return: None
         """
-        driver.get('https://lambdatest.github.io/sample-todo-app/')
+        self.driver.get('https://lambdatest.github.io/sample-todo-app/')
         sample_text = "Happy Testing at LambdaTest"
-        email_text_field = driver.find_element_by_id("sampletodotext")
+        email_text_field = self.driver.find_element_by_id("sampletodotext")
         email_text_field.send_keys(sample_text)
 
         driver.find_element_by_id("addbutton").click()
         
-        li6 = driver.find_element_by_name("li6")
+        li6 = self.driver.find_element_by_name("li6")
         sys.stderr.write(li6)
         # assert sample_text in li6
 
