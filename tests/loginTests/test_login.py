@@ -5,7 +5,7 @@ from chromedriver_py import binary_path
 import sys
 
 class TestLogin:
-    @pytest.fixture()
+    @pytest.mark.usefixtures('driver')
     def test_setup(self):
         try:
             global driver
@@ -22,7 +22,7 @@ class TestLogin:
         except:
             print("Something is failing")
 
-    def test_title(self, driver):
+    def test_title(self,test_setup):
         """
         Verify click and title of page
         :return: None
@@ -36,7 +36,7 @@ class TestLogin:
 
     
 
-    def test_item(self, driver):
+    def test_item(self,test_setup):
         """
         Verify item submission
         :return: None
