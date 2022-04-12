@@ -2,9 +2,9 @@ import pytest
 from selenium import webdriver
 from pathlib import *
 from chromedriver_py import binary_path
-import sys
 
-class TestLogin(object):
+
+class TestLogin:
     @pytest.fixture()
     def test_setup(self):
         try:
@@ -15,40 +15,65 @@ class TestLogin(object):
             driver = webdriver.Chrome(executable_path=binary_path, chrome_options=chrome_options)
             driver.implicitly_wait(10)
             driver.maximize_window()
+            yield
             driver.close()
             driver.quit()
             print("Test Completed")
         except:
             print("Something is failing")
 
-    def test_title(self, test_setup):
-        """
-        Verify click and title of page
-        :return: None
-        """
-        self.driver.get('https://lambdatest.github.io/sample-todo-app/')
-        self.driver.find_element_by_name("li1").click()
-        self.driver.find_element_by_name("li2").click()
+    def test_01_login(self, test_setup):
+        try:
+            driver.get("https://parabank.parasoft.com/parabank/index.htm")
+            driver.find_element_by_name("username").send_keys("admin")
+            driver.find_element_by_name("password").send_keys("demo")
+            driver.find_element_by_name("password").submit()
+            x = driver.title
+            assert x == "ParaBank | Accounts Overview"
+        except:
+            print("Something is failing")
+            assert False
 
-        title = "Sample page - lambdatest.com"
-        assert title == self.driver.title
+    def test_02_login_fail_test(self, test_setup):
+        try:
+            driver.get("https://parabank.parasoft.com/parabank/index.htm")
+            driver.find_element_by_name("username").send_keys("admin")
+            driver.find_element_by_name("password").send_keys("demo")
+            driver.find_element_by_name("password").submit()
+            x = driver.title
+            assert x == "ParaBank | Accounts Overview"
+        except:
+            print("Something Failed")
+            assert False
 
-    
+    def test_03_login(self, test_setup):
+        try:
+            driver.get("https://parabank.parasoft.com/parabank/index.htm")
+            driver.get_screenshot_as_base64()
+            driver.find_element_by_name("username").send_keys("admin")
+            driver.find_element_by_name("password").send_keys("demo")
+            driver.find_element_by_name("password").submit()
+            x = driver.title
+            assert x == "ParaBank | Accounts Overview"
+        except:
+            print("Something is failing")
+            assert False
 
-    def test_item(self, test_setup):
-        """
-        Verify item submission
-        :return: None
-        """
-        self.driver.get('https://lambdatest.github.io/sample-todo-app/')
-        sample_text = "Happy Testing at LambdaTest"
-        email_text_field = self.driver.find_element_by_id("sampletodotext")
-        email_text_field.send_keys(sample_text)
+    def test_04_login_fail_test(self, test_setup):
+        try:
+            driver.get("https://parabank.parasoft.com/parabank/index.htm")
+            driver.find_element_by_name("username").send_keys("admin")
+            driver.find_element_by_name("password").send_keys("demo")
+            driver.find_element_by_name("password").submit()
+            x = driver.title
+            assert x == "ParaBank | Accounts Overview"
+        except:
+            print("Something is failing")
+            assert False
 
-        driver.find_element_by_id("addbutton").click()
-        
-        li6 = self.driver.find_element_by_name("li6")
-        sys.stderr.write(li6)
-        # assert sample_text in li6
-
-
+    '''
+    def test_teardown():
+        driver.close()
+        driver.quit()
+        print("Test Completed")
+    '''
