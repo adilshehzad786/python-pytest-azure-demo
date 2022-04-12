@@ -4,7 +4,7 @@ from pathlib import *
 from chromedriver_py import binary_path
 
 
-class TestLogin:
+class TestLogin(Object):
     @pytest.fixture()
     def test_setup(self):
         try:
