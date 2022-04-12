@@ -15,7 +15,6 @@ class TestLogin:
             driver = webdriver.Chrome(executable_path=binary_path, chrome_options=chrome_options)
             driver.implicitly_wait(10)
             driver.maximize_window()
-            yield
             driver.close()
             driver.quit()
             print("Test Completed")
