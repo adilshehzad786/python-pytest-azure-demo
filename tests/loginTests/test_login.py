@@ -1,28 +1,10 @@
 import pytest
-from selenium import webdriver
-from pathlib import *
-from chromedriver_py import binary_path
 import sys
 
-class TestLogin:
-    @pytest.fixture()
-    def test_setup(self):
-        try:
-            global driver
-            chrome_options = webdriver.ChromeOptions()
-            chrome_options.add_argument('--headless')
+@pytest.mark.usefixtures('driver')
+class TestLink:
 
-            driver = webdriver.Chrome(executable_path=binary_path, chrome_options=chrome_options)
-            driver.implicitly_wait(10)
-            driver.maximize_window()
-            yield
-            driver.close()
-            driver.quit()
-            print("Test Completed")
-        except:
-            print("Something is failing")
-
-    def test_title(self,test_setup):
+    def test_title(self, driver):
         """
         Verify click and title of page
         :return: None
@@ -34,9 +16,8 @@ class TestLogin:
         title = "Sample page - lambdatest.com"
         assert title == driver.title
 
-    
 
-    def test_item(self,test_setup):
+    def test_item(self, driver):
         """
         Verify item submission
         :return: None
@@ -51,8 +32,3 @@ class TestLogin:
         li6 = driver.find_element_by_name("li6")
         sys.stderr.write(li6)
         # assert sample_text in li6
-
-    def test_teardown():
-        driver.close()
-        driver.quit()
-        print("Test Completed")
