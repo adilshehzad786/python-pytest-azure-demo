@@ -9,6 +9,8 @@ class TestLogin():
     @pytest.fixture
     def test_setup(self):
         try:
+            
+            global driver
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument('--headless')
 
@@ -23,10 +25,11 @@ class TestLogin():
 
     def test_01_login(self, test_setup):
         try:
-            self.driver.get("https://parabank.parasoft.com/parabank/index.htm")
-            self.driver.find_element_by_name("username").send_keys("admin")
-            self.driver.find_element_by_name("password").send_keys("demo")
-            self.driver.find_element_by_name("password").submit()
+            global driver
+            driver.get("https://parabank.parasoft.com/parabank/index.htm")
+            driver.find_element_by_name("username").send_keys("admin")
+            driver.find_element_by_name("password").send_keys("demo")
+            driver.find_element_by_name("password").submit()
             x = self.driver.title
             assert x == "ParaBank | Accounts Overview"
         except:
