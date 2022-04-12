@@ -5,7 +5,7 @@ from chromedriver_py import binary_path
 import sys
 
 class TestLogin:
-    @pytest.mark.usefixtures('driver')
+    @pytest.fixture()
     def test_setup(self):
         try:
             global driver
