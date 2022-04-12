@@ -23,56 +23,12 @@ class TestLogin:
 
     def test_01_login(self, test_setup):
         try:
-            driver.get("https://parabank.parasoft.com/parabank/index.htm")
-            driver.find_element_by_name("username").send_keys("admin")
-            driver.find_element_by_name("password").send_keys("demo")
-            driver.find_element_by_name("password").submit()
-            x = driver.title
+            self.driver.get("https://parabank.parasoft.com/parabank/index.htm")
+            self.driver.find_element_by_name("username").send_keys("admin")
+            self.driver.find_element_by_name("password").send_keys("demo")
+            self.driver.find_element_by_name("password").submit()
+            x = self.driver.title
             assert x == "ParaBank | Accounts Overview"
         except:
             print("Something is failing")
             assert False
-
-    def test_02_login_fail_test(self, test_setup):
-        try:
-            driver.get("https://parabank.parasoft.com/parabank/index.htm")
-            driver.find_element_by_name("username").send_keys("admin")
-            driver.find_element_by_name("password").send_keys("demo")
-            driver.find_element_by_name("password").submit()
-            x = driver.title
-            assert x == "ParaBank | Accounts Overview"
-        except:
-            print("Something Failed")
-            assert False
-
-    def test_03_login(self, test_setup):
-        try:
-            driver.get("https://parabank.parasoft.com/parabank/index.htm")
-            driver.get_screenshot_as_base64()
-            driver.find_element_by_name("username").send_keys("admin")
-            driver.find_element_by_name("password").send_keys("demo")
-            driver.find_element_by_name("password").submit()
-            x = driver.title
-            assert x == "ParaBank | Accounts Overview"
-        except:
-            print("Something is failing")
-            assert False
-
-    def test_04_login_fail_test(self, test_setup):
-        try:
-            driver.get("https://parabank.parasoft.com/parabank/index.htm")
-            driver.find_element_by_name("username").send_keys("admin")
-            driver.find_element_by_name("password").send_keys("demo")
-            driver.find_element_by_name("password").submit()
-            x = driver.title
-            assert x == "ParaBank | Accounts Overview"
-        except:
-            print("Something is failing")
-            assert False
-
-    '''
-    def test_teardown():
-        driver.close()
-        driver.quit()
-        print("Test Completed")
-    '''
