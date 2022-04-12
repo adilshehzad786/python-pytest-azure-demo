@@ -52,4 +52,7 @@ class TestLogin:
         sys.stderr.write(li6)
         # assert sample_text in li6
 
-
+    def test_teardown():
+        driver.close()
+        driver.quit()
+        print("Test Completed")
